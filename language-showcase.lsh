@@ -1,0 +1,32 @@
+var s = 1 + 2
+
+var ha = "hallo"
+
+var lol = ha + "welt"
+
+var c = (1<2) && 5 > s
+
+var b = 9
+
+const t = true
+
+var d = 1 < 7 && t
+
+
+if (s < 6-2 && b > 8) {
+	print("Hello")
+}
+
+
+const r = "hallo welt"
+
+var p = s + echo(r)
+
+function testFun(param1, param2) {
+	print("testFun called")
+}
+
+for (var i = 1; i < 8; i++) {
+	testFun(i)
+}
+

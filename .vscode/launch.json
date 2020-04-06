@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "launch lash compiler",
+            "program": "${workspaceFolder}/dist/src/cli.js",
+            "args": ["--print", "${file}"],
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "preLaunchTask": "npm: compile-src"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "build all",
+            "program": "${workspaceFolder}/dist/src/cli.js",
+            "args": ["--print", "${file}"],
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "preLaunchTask": "npm: build"
+        },
+        {
+            "type": "antlr-debug",
+            "request": "launch",
+            "name": "debug Grammar",
+            "input": "language-showcase.lsh", // ${file} does not work (see: https://github.com/mike-lischke/vscode-antlr4/issues/48)
+            "grammar": "src/grammar/lash.g4",
+            "startRule": "program",
+            "visualParseTree": true,
+            "printParseTree": true
+        },
+    ]
+}

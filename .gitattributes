@@ -1,0 +1,2 @@
+# make sure all files are always checked out with LF line endings, even on Windows (because of ESLint)
+* text eol=lf

@@ -1,0 +1,1 @@
+declare -r a=1

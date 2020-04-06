@@ -1,0 +1,12 @@
+{
+  "include": [
+    "./**/*"
+  ],
+  "extends": "../tsconfig_base",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    // strictPropertyInitialization need to be disabled when using antlr4ts and variables (otherwise build will fail)
+    "strictPropertyInitialization": false  /* Enable strict checking of property initialization in classes. */
+  }
+}

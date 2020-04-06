@@ -1,0 +1,10 @@
+# ignore the temporary output of the antlr visual studio plugin (make sure to save the grammar at least once to generate the sources required for testing with VSC)
+src/grammar/.antlr
+# ignore the node modules (install them with npm install)
+node_modules
+# ignore the temporary build folder (the grammer will be compiled into this folder)
+antlr_ts_build/*
+!antlr_ts_build/tsconfig.json
+# ignore the dist output
+dist
+

@@ -1,0 +1,3 @@
+function testFun(param1, param2) {
+	print(42)
+}
