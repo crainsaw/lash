@@ -57,8 +57,8 @@ The syntax will be familiar to everyone using TypeScript or Javascript.
 ```javascript
 var s = 1 + 2
 s = 3
-const h = "Hello "
-var greet = h + "welt"
+const h = "Hello"
+var greet = h + " World"
 const f = 5.63
 var c = (f + 3) < 10
 
@@ -79,8 +79,8 @@ This will generate the following output:
 ```bash
 s=$(( 1 + 2 ))
 s=3
-declare -r h="Hello "
-greet="${h}welt"
+declare -r h="Hello"
+greet="${h} World"
 declare -r f=5.63
 c=$([ $(echo "$f + 3 < 10" | bc -l) -eq 1 ]; echo $?)
 function myFun {
