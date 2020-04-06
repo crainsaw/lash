@@ -108,13 +108,13 @@ For a detailed description on how to get invloved take a look at [CONTRIBUTING.m
 
 # Versioning
 
-We use [Semantic Versioning](http://semver.org/). For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+We use [Semantic Versioning](http://semver.org/). For the versions available, see the [tags on this repository](https://github.com/crainsaw/lash/tags).
 
 # Authors
 
 * **Christian Nywelt** - *Initial work and maintainer* - [crainsaw](https://github.com/crainsaw)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/crainsaw/lash/graphs/contributors) who participated in this project.
 
 # License
 
