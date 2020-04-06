@@ -24,9 +24,10 @@ In order to be able to get involved into the  development you will need the foll
 
 # Installation
 
-## Clone
+## Clone and install
 ```bash
 git clone https://github.com/crainsaw/lash.git
+npm install
 ```
 
 ## Build
