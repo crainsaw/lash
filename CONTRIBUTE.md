@@ -75,6 +75,6 @@ Lash uses `jest` to perform tests. The tests are placed into `test/` and current
 
 The integration tests are divided into two types of tests. The first type of tests searches for all `.lsh` files contained `test/integration/valid_code/` and compiles it to bash. This output is compared to the contents of the corresponding `.sh` file (with the same filename). It expects the generated output to be equal to the defined output contained in the corresponding `.sh` file.
 
-The second type of integration tests searches for `.lsh` files in `test/integration/invalid_code/`. These input files are invalid code e.g. being syntactically or semantically incorrect (e.g. duplicate variable declaration). It runs the lash compiler on those files and expects them to fail.
+The second type of integration tests searches for `.lsh` files in `test/integration/invalid_code/`. These input files are invalid code i.e. being syntactically or semantically incorrect (e.g. duplicate variable declaration). It runs the lash compiler on those files and expects them to fail.
 
 In order to run the tests run `npm run test`.
