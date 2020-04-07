@@ -1,6 +1,6 @@
 # Lash
 
-Lash is a scripting language that compiles to pure bash with the goal of simplifying bash scripting.
+Lash is a modern scripting language that compiles to pure bash with the goal of simplifying bash scripting.
 
 ## Project description
 
