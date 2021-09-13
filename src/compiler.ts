@@ -1,6 +1,6 @@
-import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts'
-import { lashLexer as LashLexer } from '../antlr_ts_build/lashLexer'
-import { lashParser as LashParser } from '../antlr_ts_build/lashParser'
+import { CharStreams, CommonTokenStream } from 'antlr4ts'
+import { lashLexer as LashLexer } from '../antlr_ts_build/src/grammar/lashLexer'
+import { lashParser as LashParser } from '../antlr_ts_build/src/grammar/lashParser'
 import AntlrVisitor from './grammar/antlrVisitor'
 import BashGenerator from './emitter/bash'
 import TypeInferencer from './grammar/typeInferencer'
@@ -12,7 +12,7 @@ import Program from './ast/program'
  */
 export function sourceToAST(lashSrc: string): Program {
     // initiate the compiler
-    const lexer = new LashLexer(new ANTLRInputStream(lashSrc))
+    const lexer = new LashLexer(CharStreams.fromString(lashSrc))
     const parser = new LashParser(new CommonTokenStream(lexer))
 
     // create the AST

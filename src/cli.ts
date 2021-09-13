@@ -32,7 +32,7 @@ if (argv._.length !== 1) {
 }
 
 // get input file name
-const inFile = argv._[0]
+const inFile = argv._[0] as string
 
 if (!existsSync(inFile)) {
     console.error(`The specified input file ${inFile} does not exist.`)

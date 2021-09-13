@@ -51,9 +51,9 @@ import {
     Function_parameterContext,
     Data_typeContext,
     Assignment_opertorContext,
-} from '../../antlr_ts_build/lashParser'
+} from '../../antlr_ts_build/src/grammar/lashParser'
 
-import { lashLexer as Lexer } from '../../antlr_ts_build/lashLexer'
+import { lashLexer as Lexer } from '../../antlr_ts_build/src/grammar/lashLexer'
 import GrammarError from '../errors/grammarError'
 import Program from '../ast/program'
 import Statement from '../ast/statements/statement'
