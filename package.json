@@ -59,16 +59,16 @@
     "typescript": "^4.4.2"
   },
   "scripts": {
-    "compile-grammar": "antlr4ts -visitor -o ./antlr_ts_build/ src/grammar/lash.g4 & tsc --build ./antlr_ts_build/",
-    "compile-src": "tsc --build ./src/",
-    "build": "npm run compile-grammar & npm run compile-src",
+    "build:grammar": "antlr4ts -visitor -o ./antlr_ts_build/ src/grammar/lash.g4 && tsc --build ./antlr_ts_build/",
+    "build:src": "tsc --build ./src/",
+    "build": "npm run build:grammar && npm run build:src",
     "start": "node dist/src/cli.js",
-    "lint-src": "eslint src/**/*.ts",
-    "lint-src-fix": "eslint --fix src/**/*.ts",
-    "lint-test": "eslint test/**/*.ts",
-    "lint-test-fix": "eslint --fix test/**/*.ts",
+    "lint:src": "eslint src/**/*.ts",
+    "lint:src-fix": "eslint --fix src/**/*.ts",
+    "lint:test": "eslint test/**/*.ts",
+    "lint:test-fix": "eslint --fix test/**/*.ts",
     "lint": "eslint src/**/*.ts test/**/*.ts",
-    "lint-fix": "eslint --fix src/**/*.ts test/**/*.ts",
+    "lint:fix": "eslint --fix src/**/*.ts test/**/*.ts",
     "test": "jest --config jestconfig.json",
     "prepare": "npm run build && npm run lint && npm test"
   }
