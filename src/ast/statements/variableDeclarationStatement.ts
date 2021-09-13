@@ -3,6 +3,7 @@ import Statement from './statement'
 import DataType from '../types/dataType'
 import Expression from '../expressions/expression'
 import VariableType from '../types/variableType'
+import { SyntaxKind } from '../ast'
 
 /**
  * A variable declaration e.g. var1 = 5 or var2 = fib(4) or const var3 = 8 or var test = "hallo"
@@ -15,6 +16,6 @@ export default class VariableDeclarationStatement extends Statement {
         public readonly dataType: DataType | null,
         public readonly value: Expression,
     ) {
-        super(parseCtx)
+        super(SyntaxKind.VariableDeclarationStatement, parseCtx)
     }
 }

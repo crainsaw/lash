@@ -1,4 +1,5 @@
 import { Token } from 'antlr4ts'
+import { SyntaxKind } from '../ast'
 import Expression from './expression'
 
 /**
@@ -7,6 +8,6 @@ import Expression from './expression'
  */
 export default class VariableReference extends Expression {
     constructor(token: Token, public readonly name: string) {
-        super(token)
+        super(SyntaxKind.VariableReference, token)
     }
 }

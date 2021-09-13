@@ -9,11 +9,9 @@ import ExpressionStatement from '../ast/statements/expressionStatement'
 import ForStatement from '../ast/statements/forStatement'
 import IfStatement from '../ast/statements/ifStatement'
 import ReturnStatement from '../ast/statements/returnStatement'
-import ContinueStatement from '../ast/statements/continueStatement'
-import BreakStatement from '../ast/statements/breakStatement'
-import NOPStatement from '../ast/statements/NOPStatement'
 import FunctionDeclarationStatement from '../ast/statements/functionDeclarationStatement'
 import VariableType from '../ast/types/variableType'
+import { SyntaxKind } from '../ast/ast'
 
 /**
  * set -u # will cause the script to fail if you’re trying to reference a variable that hasn’t been set. The default behavior will just evaluate the variable to the empty string.
@@ -98,17 +96,30 @@ export default class BashGenerator {
      * @param stmt
      */
     protected visitStatement(stmt: Statement): string {
-        if (stmt instanceof VariableDeclarationStatement) return this.visitVariableDeclarationStmt(stmt)
-        if (stmt instanceof ExpressionStatement) return this.exprGenerator.visit(stmt.expr, true)
-        if (stmt instanceof ForStatement) return this.visitForStmt(stmt)
-        if (stmt instanceof BlockStatement) return `{${this.addIntent(this.visitStatements(stmt.statements))}}`
-        if (stmt instanceof IfStatement) return this.visitIfStatement(stmt)
-        if (stmt instanceof ReturnStatement) return `return ${this.exprGenerator.visit(stmt.expr)}`
-        if (stmt instanceof ContinueStatement) return 'continue'
-        if (stmt instanceof BreakStatement) return 'break'
-        if (stmt instanceof NOPStatement) return this.newline
-        if (stmt instanceof FunctionDeclarationStatement) return this.visitFunctionDeclarationStmt(stmt)
-        throw new NotImplementedError()
+        switch (stmt.kind) {
+            case SyntaxKind.VariableDeclarationStatement:
+                return this.visitVariableDeclarationStmt(stmt as VariableDeclarationStatement)
+            case SyntaxKind.ExpressionStatement:
+                return this.exprGenerator.visit((stmt as ExpressionStatement).expr, true)
+            case SyntaxKind.ForStatement:
+                return this.visitForStmt(stmt as ForStatement)
+            case SyntaxKind.BlockStatement:
+                return `{${this.addIntent(this.visitStatements((stmt as BlockStatement).statements))}}`
+            case SyntaxKind.IfStatement:
+                return this.visitIfStatement(stmt as IfStatement)
+            case SyntaxKind.ReturnStatement:
+                return `return ${this.exprGenerator.visit((stmt as ReturnStatement).expr)}`
+            case SyntaxKind.ContinueStatement:
+                return 'continue'
+            case SyntaxKind.BreakStatement:
+                return 'break'
+            case SyntaxKind.NOPStatement:
+                return this.newline
+            case SyntaxKind.FunctionDeclarationStatement:
+                return this.visitFunctionDeclarationStmt(stmt as FunctionDeclarationStatement)
+            default:
+                throw new NotImplementedError()
+        }
     }
 
     /**
@@ -118,7 +129,6 @@ export default class BashGenerator {
     protected visitFunctionDeclarationStmt(stmt: FunctionDeclarationStatement): string {
         let res = `function ${stmt.name} {${this.newline}`
 
-        // create body
         let body = ''
         for (let i = 0; i < stmt.params.length; i++) {
             const param = stmt.params[i]
@@ -154,8 +164,8 @@ export default class BashGenerator {
         let init: string
         if (stmt.init == null) {
             init = ''
-        } else if (stmt.init instanceof VariableDeclarationStatement) {
-            init = this.visitStatement(stmt.init)
+        } else if (stmt.init.kind === SyntaxKind.VariableDeclarationStatement) {
+            init = this.visitStatement(stmt.init as VariableDeclarationStatement)
         } else {
             init = this.exprGenerator.visit(stmt.init)
         }

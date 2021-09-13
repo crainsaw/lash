@@ -2,6 +2,7 @@ import { ParserRuleContext } from 'antlr4ts'
 import Statement from './statement'
 import Expression from '../expressions/expression'
 import VariableDeclarationStatement from './variableDeclarationStatement'
+import { SyntaxKind } from '../ast'
 
 export default class ForStatement extends Statement {
     constructor(
@@ -11,6 +12,6 @@ export default class ForStatement extends Statement {
         public readonly update: Expression | null,
         public readonly body: Statement,
     ) {
-        super(parseCtx)
+        super(SyntaxKind.ForStatement, parseCtx)
     }
 }
