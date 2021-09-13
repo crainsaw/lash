@@ -89,6 +89,12 @@ import VariableType from '../ast/types/variableType'
 import UnexpectedError from '../errors/unexpectedError'
 import AssignmentExpression from '../ast/expressions/assignmentExpression'
 
+type BinaryOperationExprContext =
+    | BinMathPrecExprContext
+    | BinMathSubExprContext
+    | BinCompExprContext
+    | BinBoolExprContext
+
 /**
  * Used to transform the parse tree generated from ANTLR into an AST which is easier to process.
  * Furthermore, this intermediate step allows to develop the specific lash grammar more indepdantly from the rest of the lash compiler software.
@@ -150,8 +156,7 @@ export default class AntlrVisitor {
      */
     protected visitFunctionDeclaration(ctx: Function_declarationContext): FunctionDeclarationStatement {
         const functionName = ctx._name.text
-        if (!functionName) throw new GrammarError()
-        if (!ctx.children) throw new GrammarError()
+        if (!functionName || !ctx.children) throw new GrammarError()
         const params: FunctionParameter[] = []
         for (let i = 3; i < ctx.childCount - 2; i += 2) {
             const param = ctx.children[i]
@@ -276,10 +281,7 @@ export default class AntlrVisitor {
             ctx instanceof BinCompExprContext ||
             ctx instanceof BinBoolExprContext
         ) {
-            const left = this.visitExpression(ctx._leftExpr)
-            const right = this.visitExpression(ctx._rightExpr)
-            const op = this.visitBinaryOperatorCtx(ctx._op)
-            return new BinaryExpression(ctx, op, left, right)
+            return this.visitBinaryOperationExpr(ctx)
         }
         if (ctx instanceof CallExprContext) {
             if (!ctx.children) throw new GrammarError()
@@ -317,6 +319,18 @@ export default class AntlrVisitor {
         for (const child of ctx.children) {
             if (child instanceof LiteralContext) return this.visitLiteral(child)
         } */
+    }
+
+    /**
+     *
+     * @param ctx
+     * @returns
+     */
+    protected visitBinaryOperationExpr(ctx: BinaryOperationExprContext): Expression {
+        const left = this.visitExpression(ctx._leftExpr)
+        const right = this.visitExpression(ctx._rightExpr)
+        const op = this.visitBinaryOperatorCtx(ctx._op)
+        return new BinaryExpression(ctx, op, left, right)
     }
 
     /**
