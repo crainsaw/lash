@@ -1,4 +1,5 @@
 import { ParserRuleContext } from 'antlr4ts'
+import { SyntaxKind } from '../ast'
 import Expression from './expression'
 
 export default class CallExpression extends Expression {
@@ -7,6 +8,6 @@ export default class CallExpression extends Expression {
         public readonly functionName: string,
         public readonly params: Expression[],
     ) {
-        super(parseCtx)
+        super(SyntaxKind.CallExpression, parseCtx)
     }
 }

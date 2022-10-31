@@ -2,6 +2,7 @@ import { ParserRuleContext } from 'antlr4ts'
 import Statement from './statement'
 import DataType from '../types/dataType'
 import FunctionParameter from './functionParameter'
+import { SyntaxKind } from '../ast'
 
 /**
  * A function declaration like 'function myFun(var1, var2) { }'
@@ -14,6 +15,6 @@ export default class FunctionDeclarationStatement extends Statement {
         public readonly body: Statement,
         public readonly returnType: DataType,
     ) {
-        super(parseCtx)
+        super(SyntaxKind.FunctionDeclarationStatement, parseCtx)
     }
 }

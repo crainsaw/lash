@@ -1,6 +1,7 @@
 import { ParserRuleContext } from 'antlr4ts'
 import Expression from './expression'
 import { BinaryOperatorToken } from '../operators/operatorTokens'
+import { SyntaxKind } from '../ast'
 
 /**
  * A binary opertator call like 5+3 or true && false
@@ -12,6 +13,6 @@ export default class BinaryExpression extends Expression {
         public readonly leftHandSide: Expression,
         public readonly rightHandSide: Expression,
     ) {
-        super(parseCtx)
+        super(SyntaxKind.BinaryExpression, parseCtx)
     }
 }

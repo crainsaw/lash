@@ -2,6 +2,7 @@ import { ParserRuleContext } from 'antlr4ts'
 import Expression from './expression'
 import VariableReference from './variableReference'
 import { UnaryOperatorToken } from '../operators/operatorTokens'
+import { SyntaxKind } from '../ast'
 
 export enum UnaryOperatorType {
     PREFIX = 'prefix',
@@ -18,6 +19,6 @@ export class UpdateExpression extends Expression {
         public readonly operator: UnaryOperatorToken,
         public readonly operatorType: UnaryOperatorType,
     ) {
-        super(parseCtx)
+        super(SyntaxKind.UpdateExpression, parseCtx)
     }
 }
